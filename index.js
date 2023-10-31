@@ -2,8 +2,8 @@
   function submitData (userName, userEmail) {
 
     const formData = {
-        userName: "Dan",
-        userEmail: "Poodle@gmail.com",
+        name: userName ,
+        email: userEmail , 
       };
 
       const userData = {
@@ -16,18 +16,21 @@
     };
   }
     
-fetch("http://localhost:3000/users", submitData)
-
-.then(function (response) {
+  return fetch("http://localhost:3000/users", userData)
+  .then(function (response) {
     return response.json();
   })
-  .then(function (object) {
-    console.log(object);
+  .then(function (data) {
+    const userId = data.id;
+
+    document.body.innerHTML = userId;
   })
   .catch(function (error) {
-    alert("Not Good!");
-    console.log(error.message);
+    document.body.innerHTML = error.message;
   });
+
+  submitData();
+
 
   
 
